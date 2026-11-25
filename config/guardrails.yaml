@@ -1,0 +1,66 @@
+# Guardrails Threat Patterns & Clinical Safety Rules
+
+direct_override_patterns:
+  - 'ignore\s+(all\s+)?(previous|prior|above)\s+(instructions|prompts|rules)'
+  - 'disregard\s+(all\s+)?(previous|prior|above)\s+(instructions|prompts|rules)'
+  - 'forget\s+(all\s+)?(previous|prior|above)\s+(instructions|prompts)'
+  - 'bypass\s+(all\s+)?(safety|rules|restrictions)'
+  - 'override\s+(all\s+)?(system|safety|security)\s+(rules|prompts)'
+
+system_exposure_patterns:
+  - '(reveal|show|display|print|output|dump)\s+(your\s+)?(system\s+prompt|initial\s+instructions)'
+  - 'what\s+(is|are)\s+your\s+(exact\s+)?(system\s+prompt|instructions)'
+  - 'repeat\s+the\s+text\s+above\s+verbatim'
+
+role_manipulation_patterns:
+  - 'you\s+are\s+now\s+in\s+developer\s+mode'
+  - 'enter\s+(god|dan|jailbreak|unrestricted|sudo)\s+mode'
+  - 'act\s+as\s+an\s+unrestricted\s+ai'
+  - 'simulate\s+a\s+root\s+user'
+
+sql_injection_patterns:
+  - '(?i)\bdrop\s+table\b'
+  - '(?i)\bdrop\s+database\b'
+  - '(?i)\bdelete\s+from\b'
+  - '(?i)\btruncate\s+table\b'
+  - '(?i)\balter\s+table\b'
+  - '(?i)\binsert\s+into\b'
+  - '(?i)\bupdate\s+[a-zA-Z0-9_]+\s+set\b'
+  - '(?i)\battach\s+database\b'
+  - '(?i)\bpragma\s+[a-zA-Z0-9_]+'
+  - '(?i)\bunion\s+(all\s+)?select\b'
+  - ';\s*--'
+  - "'\\s*or\\s*'1'\\s*=\\s*'1'"
+  - "'\\s*or\\s*1\\s*=\\s*1"
+
+emergency_patterns:
+  - '(?i)\b(chest\s+pain\s+(now|right\s+now|currently|severe))\b'
+  - '(?i)\bsevere\s+(?:crushing\s+)?chest\s+pain\b'
+  - '(?i)\b(severe\s+bleeding|bleeding\s+profusely)\b'
+  - '(?i)\b(unconscious|passed\s+out|not\s+breathing)\b'
+  - '(?i)\b(stroke\s+symptoms|face\s+drooping|slurred\s+speech)\b'
+  - '(?i)\b(heart\s+attack\s+(now|happening|symptoms\s+now))\b'
+  - '(?i)\b(difficulty\s+breathing(\s+right\s+now|\s+now)?|cannot\s+breathe|choking)\b'
+
+self_harm_patterns:
+  - '(?i)\b(suicide|kill\s+myself|end\s+my\s+life|want\s+to\s+die|hang\s+myself)\b'
+  - '(?i)\b(commit\s+suicide|self-harm|cutting\s+myself)\b'
+  - '(?i)\bhow\s+to\s+kill\s+myself\b'
+
+medical_advice_patterns:
+  - '(?i)\bwhat\s+medicine\s+should\s+i\s+take\b'
+  - '(?i)\bprescribe\s+(me\s+)?(a\s+)?medicine\b'
+  - '(?i)\bwhat\s+dosage\s+of\b'
+  - '(?i)\bdo\s+i\s+have\s+cancer\b'
+  - '(?i)\bdiagnose\s+my\b'
+
+pii_patterns:
+  phone: '(?:(?:\+91|91)[-\s]?)?[6-9]\d{9}\b'
+  aadhaar: '\b\d{4}[-\s]\d{4}[-\s]\d{4}\b|\b[2-9]\d{11}\b'
+  pan: '\b[A-Z]{5}[0-9]{4}[A-Z]\b'
+  email: '\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b'
+  claim_id: '\b(?:CLM|POL|CLAIM|POLICY|MED)[-_/][A-Za-z0-9]{5,}\b'
+
+helplines:
+  emergency: '112'
+  mental_health: 'Tele-MANAS 14416'

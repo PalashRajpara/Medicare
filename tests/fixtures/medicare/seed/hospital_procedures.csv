@@ -1,0 +1,11 @@
+procedure_id,hospital_id,procedure_name,category,min_cost_inr,max_cost_inr,avg_cost_inr,avg_wait_days,room_rent_per_day_inr
+101,1,Total Knee Replacement,Orthopedics,180000,260000,220000,5,4500
+102,1,Cataract Surgery,Ophthalmology,35000,65000,48000,2,3000
+103,1,Coronary Artery Bypass Graft (CABG),Cardiology,280000,420000,340000,8,6000
+104,2,Total Knee Replacement,Orthopedics,160000,240000,195000,3,4000
+105,2,Total Hip Replacement,Orthopedics,190000,280000,230000,4,4200
+106,2,Cataract Surgery,Ophthalmology,30000,55000,42000,1,2800
+107,3,Total Knee Replacement,Orthopedics,150000,220000,185000,6,3500
+108,3,Coronary Artery Bypass Graft (CABG),Cardiology,250000,380000,310000,10,5000
+109,3,Laparoscopic Appendectomy,General Surgery,55000,90000,72000,2,3200
+110,3,Hernia Repair,General Surgery,50000,85000,65000,3,3200

@@ -1,0 +1,7 @@
+acceptance_id,hospital_id,insurer_name,cashless_accepted,network_type,avg_claim_settlement_days
+201,1,Star Health,1,Tier-1 Preferred,3
+202,1,HDFC ERGO,1,Tier-1 Preferred,4
+203,2,Star Health,1,Network Partner,4
+204,2,HDFC ERGO,1,Tier-1 Preferred,3
+205,3,Star Health,0,Reimbursement Only,14
+206,3,HDFC ERGO,1,Network Partner,5

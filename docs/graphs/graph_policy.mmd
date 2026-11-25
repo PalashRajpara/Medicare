@@ -1,0 +1,26 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	plan_query(plan_query)
+	retrieve(retrieve)
+	grade_chunks(grade_chunks)
+	rewrite_query(rewrite_query)
+	build_citations(build_citations)
+	no_evidence(no_evidence)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> plan_query;
+	grade_chunks -.-> build_citations;
+	grade_chunks -.-> no_evidence;
+	grade_chunks -.-> rewrite_query;
+	plan_query --> retrieve;
+	retrieve --> grade_chunks;
+	rewrite_query --> retrieve;
+	build_citations --> __end__;
+	no_evidence --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

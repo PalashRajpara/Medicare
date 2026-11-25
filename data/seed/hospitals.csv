@@ -1,0 +1,101 @@
+hospital_id,name,city,state,rating,bed_count,nabh_accredited,emergency_wait_minutes
+1,Lilavati Hospital and Research Centre,Mumbai,Maharashtra,4.6,320,1,15
+2,Kokilaben Dhirubhai Ambani Hospital,Mumbai,Maharashtra,4.7,750,1,12
+3,Hinduja Hospital,Mumbai,Maharashtra,4.5,400,1,18
+4,Tata Memorial Hospital,Mumbai,Maharashtra,4.8,600,1,25
+5,Breach Candy Hospital,Mumbai,Maharashtra,4.4,210,1,15
+6,Fortis Hospital Mulund,Mumbai,Maharashtra,4.5,315,1,14
+7,Nanavati Max Super Speciality Hospital,Mumbai,Maharashtra,4.4,350,1,20
+8,Sir H. N. Reliance Foundation Hospital,Mumbai,Maharashtra,4.8,345,1,10
+9,Jaslok Hospital and Research Centre,Mumbai,Maharashtra,4.3,360,1,22
+10,SL Raheja Hospital,Mumbai,Maharashtra,4.2,170,1,16
+11,All India Institute of Medical Sciences (AIIMS),Delhi,Delhi,4.9,2400,1,35
+12,Medanta The Medicity,Delhi,Delhi,4.8,1250,1,15
+13,Indraprastha Apollo Hospitals,Delhi,Delhi,4.6,710,1,14
+14,Max Super Speciality Hospital Saket,Delhi,Delhi,4.6,530,1,12
+15,Fortis Memorial Research Institute,Delhi,Delhi,4.7,1000,1,15
+16,Sir Ganga Ram Hospital,Delhi,Delhi,4.5,675,1,20
+17,BLK-Max Super Speciality Hospital,Delhi,Delhi,4.5,650,1,16
+18,Artemis Hospital,Delhi,Delhi,4.4,400,1,18
+19,Fortis Escorts Heart Institute,Delhi,Delhi,4.7,310,1,10
+20,Moolchand Hospital,Delhi,Delhi,4.3,300,1,20
+21,Manipal Hospital Old Airport Road,Bengaluru,Karnataka,4.7,600,1,15
+22,Narayana Institute of Cardiac Sciences,Bengaluru,Karnataka,4.8,1400,1,18
+23,Apollo Hospital Bannerghatta Road,Bengaluru,Karnataka,4.6,250,1,14
+24,Fortis Hospital Bannerghatta Road,Bengaluru,Karnataka,4.5,276,1,15
+25,Aster CMI Hospital Hebbal,Bengaluru,Karnataka,4.6,500,1,12
+26,Sakra World Hospital,Bengaluru,Karnataka,4.5,350,1,15
+27,St. John's Medical College Hospital,Bengaluru,Karnataka,4.4,1350,1,25
+28,Columbia Asia Referral Hospital Yeshwanthpur,Bengaluru,Karnataka,4.3,200,1,16
+29,BGS Gleneagles Global Hospitals,Bengaluru,Karnataka,4.4,450,1,18
+30,Sparsh Hospital Yeshwanthpur,Bengaluru,Karnataka,4.3,250,1,20
+31,Apollo Hospitals International Limited,Ahmedabad,Gujarat,4.6,350,1,15
+32,Shalby Multi-Specialty Hospital SG Highway,Ahmedabad,Gujarat,4.5,280,1,20
+33,Sterling Hospital Gurukul,Ahmedabad,Gujarat,4.3,220,1,18
+34,KD Hospital (Kusum Dhirajlal Hospital),Ahmedabad,Gujarat,4.6,300,1,14
+35,Marengo CIMS Hospital,Ahmedabad,Gujarat,4.7,450,1,12
+36,Zydus Hospital Thaltej,Ahmedabad,Gujarat,4.6,550,1,15
+37,HCG Cancer Centre Sola,Ahmedabad,Gujarat,4.5,180,1,20
+38,Epic Hospital Empire City,Ahmedabad,Gujarat,4.2,160,1,22
+39,U.N. Mehta Institute of Cardiology,Ahmedabad,Gujarat,4.8,1251,1,25
+40,SAL Hospital and Medical Institute,Ahmedabad,Gujarat,4.2,250,1,20
+41,Apollo Hospital Greams Road,Chennai,Tamil Nadu,4.8,600,1,12
+42,Fortis Malar Hospital Adyar,Chennai,Tamil Nadu,4.3,180,1,18
+43,Gleneagles Global Health City,Chennai,Tamil Nadu,4.6,1000,1,16
+44,MIOT International Manapakkam,Chennai,Tamil Nadu,4.5,1000,1,15
+45,MGM Healthcare Nelson Manickam Road,Chennai,Tamil Nadu,4.7,400,1,10
+46,Kauvery Hospital Alwarpet,Chennai,Tamil Nadu,4.4,200,1,15
+47,Vijaya Hospital Vadapalani,Chennai,Tamil Nadu,4.3,350,1,22
+48,Sri Ramachandra Medical Centre,Chennai,Tamil Nadu,4.5,800,1,25
+49,Dr. Rela Institute & Medical Centre,Chennai,Tamil Nadu,4.6,450,1,14
+50,SIMS Hospital Vadapalani,Chennai,Tamil Nadu,4.4,345,1,18
+51,Apollo Hospitals Jubilee Hills,Hyderabad,Telangana,4.8,550,1,12
+52,Yashoda Hospitals Secunderabad,Hyderabad,Telangana,4.6,700,1,15
+53,KIMS Hospitals Secunderabad,Hyderabad,Telangana,4.6,1000,1,16
+54,CARE Hospitals Banjara Hills,Hyderabad,Telangana,4.5,435,1,18
+55,Continental Hospitals Gachibowli,Hyderabad,Telangana,4.5,750,1,14
+56,Citizens Specialty Hospital,Hyderabad,Telangana,4.3,300,1,20
+57,AIG Hospitals Gachibowli,Hyderabad,Telangana,4.8,800,1,10
+58,Sunshine Hospitals Gachibowli,Hyderabad,Telangana,4.4,250,1,18
+59,Medicover Hospitals Hitec City,Hyderabad,Telangana,4.3,350,1,16
+60,Star Hospitals Banjara Hills,Hyderabad,Telangana,4.4,310,1,15
+61,Apollo Multispeciality Hospitals EM Bypass,Kolkata,West Bengal,4.6,510,1,16
+62,Fortis Hospital Anandapur,Kolkata,West Bengal,4.5,400,1,18
+63,AMRI Hospitals Dhakuria,Kolkata,West Bengal,4.3,220,1,22
+64,Medica Superspecialty Hospital,Kolkata,West Bengal,4.5,500,1,15
+65,Peerless Hospital Panchasayar,Kolkata,West Bengal,4.2,400,1,24
+66,Ruby General Hospital Kasba,Kolkata,West Bengal,4.1,316,1,25
+67,Woodlands Multispeciality Hospital,Kolkata,West Bengal,4.4,240,1,20
+68,Belle Vue Clinic Loudon Street,Kolkata,West Bengal,4.3,372,1,18
+69,Desun Hospital EM Bypass,Kolkata,West Bengal,4.2,300,1,22
+70,RN Tagore International Institute of Cardiac Sciences,Kolkata,West Bengal,4.7,680,1,14
+71,Ruby Hall Clinic Sassoon Road,Pune,Maharashtra,4.6,600,1,15
+72,Jehangir Hospital,Pune,Maharashtra,4.5,350,1,18
+73,Manipal Hospital Kharadi,Pune,Maharashtra,4.6,250,1,14
+74,Sahyadri Super Speciality Hospital Deccan,Pune,Maharashtra,4.5,220,1,16
+75,Deenanath Mangeshkar Hospital,Pune,Maharashtra,4.7,800,1,20
+76,Aditya Birla Memorial Hospital,Pune,Maharashtra,4.5,500,1,15
+77,Jupiter Hospital Baner,Pune,Maharashtra,4.6,350,1,12
+78,Sancheti Hospital Shivajinagar,Pune,Maharashtra,4.7,200,1,14
+79,Poona Hospital and Research Centre,Pune,Maharashtra,4.2,300,1,22
+80,Inamdar Multispecialty Hospital,Pune,Maharashtra,4.1,150,1,25
+81,Kiran Multi Super Speciality Hospital Katargam,Surat,Gujarat,4.7,550,1,15
+82,Sunshine Global Hospital Dumas Road,Surat,Gujarat,4.4,150,1,18
+83,Shalby Hospital Navyug College Road,Surat,Gujarat,4.3,160,1,20
+84,Apple Hospital Udhna Darwaja,Surat,Gujarat,4.2,200,1,22
+85,Mahavir Trauma & Multi Speciality Hospital,Surat,Gujarat,4.3,300,1,24
+86,BAPS Pramukh Swami Hospital Adajan,Surat,Gujarat,4.5,250,1,16
+87,Unique Hospital Majura Gate,Surat,Gujarat,4.1,120,1,25
+88,United Green Hospital Vesu,Surat,Gujarat,4.2,100,1,20
+89,Care Hospital Athwa Gate,Surat,Gujarat,4.0,110,0,28
+90,Metas Adventist Hospital Athwalines,Surat,Gujarat,4.2,250,1,22
+91,Fortis Escorts Hospital Malviya Nagar,Jaipur,Rajasthan,4.6,275,1,15
+92,Manipal Hospital Vidhyadhar Nagar,Jaipur,Rajasthan,4.5,225,1,16
+93,Narayana Multispeciality Hospital Pratap Nagar,Jaipur,Rajasthan,4.5,330,1,18
+94,Eternal Hospital (EHCC) Jawahar Circle,Jaipur,Rajasthan,4.6,250,1,14
+95,Mahatma Gandhi Hospital Sitapura,Jaipur,Rajasthan,4.4,1400,1,25
+96,Apex Hospital Malviya Nagar,Jaipur,Rajasthan,4.3,200,1,20
+97,Santokba Durlabhji Memorial Hospital,Jaipur,Rajasthan,4.4,500,1,22
+98,Rukmani Birla Hospital Gopalpura,Jaipur,Rajasthan,4.3,210,1,20
+99,Bhagwan Mahaveer Cancer Hospital,Jaipur,Rajasthan,4.5,300,1,18
+100,Imperial Hospital Shastri Nagar,Jaipur,Rajasthan,4.0,100,0,30

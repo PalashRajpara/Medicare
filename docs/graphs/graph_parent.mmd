@@ -1,0 +1,37 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	guardrail(guardrail)
+	blocked_response(blocked_response)
+	supervisor(supervisor)
+	conversational(conversational)
+	clarify(clarify)
+	sql_agent(sql_agent)
+	policy_agent(policy_agent)
+	synthesizer(synthesizer)
+	verifier(verifier)
+	finalize(finalize)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> guardrail;
+	guardrail -.-> blocked_response;
+	guardrail -.-> supervisor;
+	policy_agent --> synthesizer;
+	sql_agent --> synthesizer;
+	supervisor -.-> clarify;
+	supervisor -.-> conversational;
+	supervisor -.-> policy_agent;
+	supervisor -.-> sql_agent;
+	synthesizer --> verifier;
+	verifier -.-> finalize;
+	verifier -.-> synthesizer;
+	blocked_response --> __end__;
+	clarify --> __end__;
+	conversational --> __end__;
+	finalize --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

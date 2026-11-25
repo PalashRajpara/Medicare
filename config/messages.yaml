@@ -1,0 +1,117 @@
+# User-Facing Messages, Notices, Guardrail Refusals, and Fallback Texts
+
+# Guardrail Refusal Messages
+emergency_refusal: "Immediate Medical Attention Required: Based on your query, you may be experiencing a medical emergency. Please call emergency services ({emergency_helpline}) or visit the nearest emergency room immediately. {app_name} is an informational tool and cannot assist with acute clinical emergencies."
+crisis_refusal: "Mental Health Support: If you or someone you know is in distress, please know that immediate help is available. Please reach out to emergency services at {emergency_helpline} or call {crisis_helpline} to speak with a trained counselor immediately. Confidential support is available 24/7."
+sql_injection_refusal: "Potential database injection pattern detected in input. Please rephrase your query naturally."
+prompt_injection_refusal: "I cannot process this request as it violates safety guidelines."
+
+# Clarification Questions
+clarification_default: "Which medical procedure and city would you like to compare?"
+clarification_missing_procedure: "Could you specify which medical procedure you are interested in?"
+clarification_missing_city: "Which city or location would you like to explore?"
+scoping_hospitals_heading: "I found {count} accredited hospitals in {city} offering **{procedure}** (packages typically range from {min_price} to {max_price}):\n{hospital_list}\n\nTo help narrow down the best option for your situation, please let me know:"
+scoping_q_insurance: "1. **Do you have health insurance?** (e.g., Star Health, HDFC ERGO, Care Health, Niva Bupa, or paying cash?)"
+scoping_q_priority: "2. **What is your top priority?** (Lowest package cost, shortest wait time, or cashless network hospital?)"
+scoping_quick_options_caption: "*Or choose a quick option below:*"
+chip_lowest_cost: "Lowest package cost in {city}"
+chip_shortest_wait: "Shortest wait time in {city}"
+chip_check_insurance: "Check insurance cashless network"
+chip_show_full_table: "Show full comparison table"
+
+# Hospital Directory & Count Responses
+hospital_count_summary: "There are **{count} accredited hospitals** in **{city}** in our directory."
+hospital_count_no_records: "No accredited hospitals were found for **{city}** in our directory. Please verify the city name."
+hospital_count_next_steps: "Would you like to explore procedural tariffs (e.g., Knee Replacement, Cataract Surgery), check cashless insurance networks, or compare wait times across these hospitals?"
+
+# Fallback & Offline Notices
+provider_offline_notice: "**Notice:** The AI provider is currently offline or unavailable. Hospital database cost comparisons cannot be computed without an active language model."
+no_policy_evidence: "No matching policy clauses or database records could be retrieved."
+policy_excerpts_heading: "### Relevant Insurance Policy Excerpts:"
+fallback_summary: "Here is the verified healthcare cost and insurance guidance for {procedure} in {city}."
+fallback_no_hospital_records: "No hospital procedure records were found matching your criteria. The hospital database is not loaded yet. Run `python -m medicare.medicare.setup --all` to import records."
+fallback_no_policy_clauses: "No matching policy clauses or waiting period details were found in the indexed documents."
+fallback_next_steps: "Would you like to explore cashless insurance coverage, or compare wait times across these hospitals?"
+fallback_disclaimer: "⚠️ **Disclaimer:** All figures and policy terms are derived strictly from sample records and indexed documents. This does not constitute medical or insurance underwriting advice."
+
+# System Status & Operational Messages
+conversational_welcome: "Hello! How can I help you with hospital procedural costs or insurance today?"
+execution_timeout: "The system timed out while evaluating your query. Please try again with a more specific question."
+operational_error: "An operational error occurred during processing. Please try again or rephrase your query."
+zero_records_found: "The database search returned zero records matching your filters."
+policy_search_no_match: "No matching insurance policy clauses found in the index. Please verify the insurer name or policy keywords."
+
+# Routing & Supervision
+routing_conversational_reason: "Query is a conversational greeting with no medical intent."
+routing_underspecified_reason: "Query is underspecified with no procedure or city."
+routing_scoping_reason: "Broad comparative query requiring progressive scoping."
+supervisor_override: "Supervisor cross-check overrode LLM plan with rules router."
+policy_skipped_data_only: "Policy Agent skipped for data-only query."
+sql_skipped_policy_only: "Hospital SQL skipped for policy-only query."
+
+# SQL Agent Nodes
+sql_loading_schema: "Loading hospital schema and planning query..."
+sql_generating_query: "Generating SQL query for hospital records..."
+sql_database_empty: "Hospital database is empty or not initialized."
+sql_repeated_detected: "Repeated identical SQL detected; ending loop."
+sql_fixer_identical: "Fixer returned identical SQL to failed query; prompting for variation..."
+sql_fixer_variation_prompt: "You MUST vary the query so it executes without error."
+sql_broadening_query: "Zero records found. Broadening query filters..."
+sql_retry_limit: "Hospital query reached retry limit."
+
+# Policy Agent Nodes
+policy_retrieved_verified: "Retrieved and verified {count} policy clauses."
+
+# Synthesizer & Grounding Verification
+synthesizing_recommendations: "Synthesizing clinical and policy recommendations..."
+synthesizer_llm_unavailable: "Synthesizer LLM unavailable ({error}). Using document search fallback."
+verifying_grounding: "Verifying grounding against retrieved evidence..."
+grounding_verified: "Grounding verified. All claims backed by evidence."
+grounding_exhausted_fallback: "Grounding verification exhausted retries. Applying verified deterministic fallback."
+fallback_heading_summary: "### 1. Summary"
+fallback_heading_comparison: "### 2. Cost & Wait-Time Comparison"
+fallback_heading_policy: "### 3. Insurance & Waiting-Period Notes"
+fallback_heading_next_steps: "### 4. What To Do Next"
+
+# Grounding Issue Messages
+issue_citation_marker: "Citation marker [{marker}] does not match any retrieved policy clause."
+issue_policy_claim_uncited: "Policy claim with specific terms lacks citation marker: '{sentence}...'"
+issue_policy_claim_no_evidence: "Policy claim stated without retrieved policy evidence: '{sentence}...'"
+issue_numeric_claim_unmatched: "Numeric claim '{raw_expr}' (value={val}) not found in database or cited text."
+issue_entity_unmatched: "Hospital '{hosp}' mentioned in answer is not present in SQL results."
+
+# Document & API routes
+doc_accepted: "Document accepted for background processing."
+magic_bytes_pdf_failed: "Magic byte validation failed: file does not match PDF format."
+magic_bytes_docx_failed: "Magic byte validation failed: file does not match DOCX format."
+file_size_exceeded: "File size exceeds maximum allowed limit."
+doc_uploaded_success: "Document uploaded successfully and queued for parsing."
+curated_cannot_delete: "Curated policy documents cannot be deleted via API."
+
+# UI Branding, Empty State & Suggestions
+app_tagline: "Your Trusted Healthcare & Insurance Navigator"
+welcome_title: "MediCare"
+welcome_subtitle: "Your Trusted Healthcare & Insurance Navigator"
+suggested_queries_header: "**Suggested queries:**"
+suggested_followups_header: "**Suggested follow-ups:**"
+explore_button_label: "Explore"
+chip_help_text: "Click to submit this question"
+
+# UI Chat, Navigation & Status Banners
+nav_chat_label: "Chat"
+nav_documents_label: "My Documents"
+nav_how_it_works_label: "How It Works"
+stop_generation_label: "Stop"
+input_placeholder: "Ask about costs, wait times, claims..."
+chat_analyzing_request: "Analyzing healthcare request..."
+chat_execution_error: "Execution encountered an error"
+chat_unknown_error: "Unknown error"
+chat_execution_cancelled: "Execution cancelled by user"
+chat_generation_stopped: "\n\n*(Generation stopped by user)*"
+chat_response_interrupted: "\n\n*(Response was interrupted: {error})*"
+chat_generation_error: "⚠️ **Could not generate response:** {error}\n\nPlease verify that the MediCare backend service is running and model configuration is valid."
+backend_offline_banner: "⚠️ Cannot connect to MediCare backend service. Please verify that the backend is running and reachable."
+retry_button_label: "Retry Connection"
+error_prefix: "Error"
+
+

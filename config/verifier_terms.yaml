@@ -1,0 +1,57 @@
+# Grounding Verifier Terminology, Disclaimers, and Exempt Constants
+
+policy_vocabulary:
+  - "waiting period"
+  - "waiting periods"
+  - "pre-existing"
+  - "pre-existing disease"
+  - "copay"
+  - "co-pay"
+  - "capping"
+  - "exclusion"
+  - "excluded"
+  - "exclusions"
+  - "coverage"
+  - "cover"
+  - "covered"
+  - "pre-authorization"
+  - "cashless"
+  - "sub-limit"
+  - "sub-limits"
+  - "deductible"
+  - "claim"
+  - "appeal"
+  - "reject"
+  - "ped"
+  - "room rent"
+
+disclaimer_words:
+  - "no policy"
+  - "not cover"
+  - "no information"
+  - "not found"
+  - "does not cover"
+  - "not available"
+  - "do not provide"
+  - "records do not"
+
+exempt_numbers:
+  - 1.0
+  - 2.0
+  - 3.0
+  - 4.0
+  - 5.0
+  - 6.0
+  - 7.0
+  - 8.0
+  - 9.0
+  - 10.0
+  - 12.0
+  - 24.0
+  - 30.0
+  - 36.0
+  - 48.0
+  - 50.0
+  - 60.0
+  - 100.0
+  - 200.0

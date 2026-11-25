@@ -1,0 +1,4 @@
+hospital_id,name,city,state,rating,bed_count,nabh_accredited,emergency_wait_minutes
+1,Apollo International Hospital,Ahmedabad,Gujarat,4.6,350,1,15
+2,Shalby Multi-Specialty Hospital,Ahmedabad,Gujarat,4.4,280,1,25
+3,Sterling Hospital,Ahmedabad,Gujarat,4.2,220,1,20

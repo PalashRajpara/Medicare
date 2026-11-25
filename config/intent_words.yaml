@@ -1,0 +1,60 @@
+# Generic Intent Classification Vocabulary
+
+conversational_greetings:
+  - 'hello'
+  - 'hi'
+  - 'hey'
+  - 'good morning'
+  - 'good afternoon'
+  - 'good evening'
+  - 'who are you'
+  - 'what can you do'
+  - 'help'
+  - 'thanks'
+  - 'thank you'
+
+conversational_patterns:
+  - '^(hello|hi|hey|good\s+morning|good\s+afternoon|good\s+evening)\b'
+  - '\bwho\s+are\s+you\b'
+  - '\bhow\s+can\s+you\s+help\b'
+  - '\bcan\s+you\s+assist\b'
+  - '\bwhat\s+can\s+you\s+do\b'
+  - '\bthanks\s+for\s+your\s+help\b'
+  - '\bhave\s+a\s+great\s+day\b'
+
+policy_indicators:
+  - 'waiting period'
+  - 'pre-existing'
+  - 'copay'
+  - 'co-pay'
+  - 'capping'
+  - 'exclusion'
+  - 'excluded'
+  - 'coverage'
+  - 'cover'
+  - 'covered'
+  - 'pre-authorization'
+  - 'cashless'
+  - 'sub-limit'
+  - 'deductible'
+  - 'claim'
+  - 'appeal'
+  - 'reject'
+
+data_indicators:
+  - 'cost'
+  - 'price'
+  - 'rate'
+  - 'fee'
+  - 'wait time'
+  - 'waiting days'
+  - 'charge'
+  - 'package'
+  - 'hospital'
+  - 'hospitals'
+
+query_expansion_terms:
+  - 'coverage'
+  - 'waiting period'
+  - 'exclusions'
+  - 'pre-existing'

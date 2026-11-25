@@ -1,0 +1,34 @@
+---
+config:
+  flowchart:
+    curve: linear
+---
+graph TD;
+	__start__([<p>__start__</p>]):::first
+	load_schema(load_schema)
+	generate_sql(generate_sql)
+	static_check(static_check)
+	execute_sql(execute_sql)
+	fix_sql(fix_sql)
+	broaden_query(broaden_query)
+	finish(finish)
+	give_up(give_up)
+	__end__([<p>__end__</p>]):::last
+	__start__ --> load_schema;
+	broaden_query --> static_check;
+	execute_sql -.-> broaden_query;
+	execute_sql -.-> finish;
+	execute_sql -.-> fix_sql;
+	execute_sql -.-> give_up;
+	fix_sql -.-> give_up;
+	fix_sql -.-> static_check;
+	generate_sql --> static_check;
+	load_schema --> generate_sql;
+	static_check -.-> execute_sql;
+	static_check -.-> fix_sql;
+	static_check -.-> give_up;
+	finish --> __end__;
+	give_up --> __end__;
+	classDef default fill:#f2f0ff,line-height:1.2
+	classDef first fill-opacity:0
+	classDef last fill:#bfb6fc

@@ -1,0 +1,74 @@
+version: '3.8'
+
+services:
+  medicare-init:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: python -m medicare.medicare.setup --all
+    environment:
+      - VAR_DIR=/app/var
+      - MEDICARE_DB_PATH=/app/var/hospitals.db
+      - MANIFEST_DB_PATH=/app/var/manifest.db
+      - CHROMA_PATH=/app/var/chroma
+      - SEED_CSV_DIR=/app/data/seed
+      - POLICY_DOCS_DIR=/app/data/policies
+      - USE_MOCK_MODELS=${USE_MOCK_MODELS:-true}
+    volumes:
+      - medicare_var:/app/var
+      - ./data/seed:/app/data/seed:ro
+      - ./data/policies:/app/data/policies:ro
+    restart: "no"
+
+  medicare-api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: uvicorn medicare.api.app:create_app --factory --host 0.0.0.0 --port 8080
+    ports:
+      - "8080:8080"
+    environment:
+      - HOST=0.0.0.0
+      - PORT=8080
+      - VAR_DIR=/app/var
+      - STORAGE_ENGINE=sqlite
+      - SQLITE_PATH=/app/var/platform.db
+      - MEDICARE_DB_PATH=/app/var/hospitals.db
+      - MANIFEST_DB_PATH=/app/var/manifest.db
+      - CHROMA_PATH=/app/var/chroma
+      - UPLOAD_DIR=/app/var/uploads
+      - POLICY_DOCS_DIR=/app/data/policies
+      - USE_MOCK_MODELS=${USE_MOCK_MODELS:-true}
+      - GROQ_API_KEY=${GROQ_API_KEY:-}
+      - GROQ_MODEL=${GROQ_MODEL:-llama-3.3-70b-versatile}
+      - MEDICARE_DEMO_FAIL_FIRST=${MEDICARE_DEMO_FAIL_FIRST:-false}
+    volumes:
+      - medicare_var:/app/var
+      - ./data/policies:/app/data/policies:ro
+    depends_on:
+      medicare-init:
+        condition: service_completed_successfully
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:8080/health"]
+      interval: 5s
+      timeout: 3s
+      retries: 5
+      start_period: 5s
+    restart: unless-stopped
+
+  medicare-ui:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    command: streamlit run ui/app.py --server.port 8501 --server.address 0.0.0.0
+    ports:
+      - "8501:8501"
+    environment:
+      - BACKEND_SERVICE_URL=http://medicare-api:8080
+    depends_on:
+      medicare-api:
+        condition: service_healthy
+    restart: unless-stopped
+
+volumes:
+  medicare_var:

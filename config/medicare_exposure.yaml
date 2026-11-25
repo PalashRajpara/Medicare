@@ -1,0 +1,14 @@
+# Database Exposure Configuration
+# Schema elements to hide from LLM tools and SQL validation
+
+hidden_tables:
+  - 'sqlite_sequence'
+  - 'sqlite_stat1'
+
+hidden_columns:
+  # Sensitive or internal columns to exclude from schema and tool queries
+  # Format: table_name.column_name or standalone column_name
+  - 'created_at'
+  - 'updated_at'
+  - 'password_hash'
+  - 'internal_notes'

@@ -1,0 +1,55 @@
+# ==============================================================================
+# MediCare Docker Ignore Policy
+# ==============================================================================
+
+# Python artifacts & caches
+__pycache__/
+*.py[cod]
+*$py.class
+*.so
+.Python
+
+# Virtual environments
+.venv/
+env/
+venv/
+ENV/
+
+# Testing & Linting caches
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+.coverage
+.coverage.*
+htmlcov/
+
+# Local databases, Chroma stores & Runtime state
+var/
+scratch/
+data/uploads/
+data/chroma/
+*.db
+*.sqlite
+*.sqlite3
+*.db-journal
+*.db-wal
+*.db-shm
+
+# Secrets & Environment files
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.cert
+*.crt
+
+# Git & IDE & OS artifacts
+.git/
+.gitignore
+.dockerignore
+.DS_Store
+Thumbs.db
+.vscode/
+.idea/
+.gemini/
