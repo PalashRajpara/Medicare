@@ -1,6 +1,6 @@
 <div align="center">
 
-# MediCare: Autonomous Multi-Agent Clinical & Claim Intelligence Platform
+# MediCare: Multi-Agent Clinical & Claim Intelligence Platform
 
 <p align="center">
   <strong>An enterprise-grade, production-ready multi-agent AI system for healthcare procedural cost comparisons, hospital wait times, and health insurance policy navigation.</strong>
