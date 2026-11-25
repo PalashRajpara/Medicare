@@ -1,4 +1,4 @@
-# Hardcoding Allowlist
+# Technical Constants and Dynamic Configuration Allowlist
 # Every entry must have:
 # - file: path to file relative to repo root
 # - category: A | B | C | D | E | F | G

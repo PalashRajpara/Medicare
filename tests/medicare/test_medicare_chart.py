@@ -67,3 +67,22 @@ def test_chart_spec_column_detection_and_serializability():
     parsed = json.loads(json_str)
     assert parsed["x_axis"] == "hospital_name"
     assert len(parsed["data"]) == 3
+
+
+def test_chart_spec_deduplication():
+    """Verify chart builder deduplicates repeated rows to prevent repeated bars."""
+    table = TableResult(
+        columns=["hospital_name", "avg_cost_inr"],
+        rows=[
+            ["Sterling Hospital", 170000],
+            ["Sterling Hospital", 170000],
+            ["Sterling Hospital", 170000],
+            ["Epic Hospital", 174000],
+            ["Epic Hospital", 174000],
+        ],
+        row_count=5,
+    )
+    spec = build_chart_spec(table)
+    assert spec is not None
+    assert len(spec.data) == 2
+    assert [d["hospital_name"] for d in spec.data] == ["Sterling Hospital", "Epic Hospital"]

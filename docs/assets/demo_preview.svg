@@ -1,13 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 630" width="100%" height="100%">
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 480" width="100%" height="100%">
   <defs>
     <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
       <stop offset="0%" stop-color="#0f172a"/>
       <stop offset="50%" stop-color="#1e293b"/>
       <stop offset="100%" stop-color="#0f172a"/>
-    </linearGradient>
-    <linearGradient id="cyan-blue" x1="0%" y1="0%" x2="100%" y2="100%">
-      <stop offset="0%" stop-color="#06b6d4"/>
-      <stop offset="100%" stop-color="#3b82f6"/>
     </linearGradient>
     <linearGradient id="card-bg" x1="0%" y1="0%" x2="0%" y2="100%">
       <stop offset="0%" stop-color="#1e293b"/>
@@ -16,121 +12,98 @@
   </defs>
 
   <!-- Background -->
-  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="480" fill="url(#bg)"/>
 
   <!-- Grid overlay -->
-  <g stroke="#334155" stroke-width="0.5" stroke-opacity="0.3">
-    <line x1="0" y1="105" x2="1200" y2="105"/>
-    <line x1="0" y1="210" x2="1200" y2="210"/>
-    <line x1="0" y1="315" x2="1200" y2="315"/>
-    <line x1="0" y1="420" x2="1200" y2="420"/>
-    <line x1="0" y1="525" x2="1200" y2="525"/>
-    <line x1="200" y1="0" x2="200" y2="630"/>
-    <line x1="400" y1="0" x2="400" y2="630"/>
-    <line x1="600" y1="0" x2="600" y2="630"/>
-    <line x1="800" y1="0" x2="800" y2="630"/>
-    <line x1="1000" y1="0" x2="1000" y2="630"/>
+  <g stroke="#334155" stroke-width="0.5" stroke-opacity="0.25">
+    <line x1="0" y1="80" x2="1200" y2="80"/>
+    <line x1="0" y1="160" x2="1200" y2="160"/>
+    <line x1="0" y1="240" x2="1200" y2="240"/>
+    <line x1="0" y1="320" x2="1200" y2="320"/>
+    <line x1="0" y1="400" x2="1200" y2="400"/>
+    <line x1="200" y1="0" x2="200" y2="480"/>
+    <line x1="400" y1="0" x2="400" y2="480"/>
+    <line x1="600" y1="0" x2="600" y2="480"/>
+    <line x1="800" y1="0" x2="800" y2="480"/>
+    <line x1="1000" y1="0" x2="1000" y2="480"/>
   </g>
 
   <!-- Glowing Accent Header -->
-  <circle cx="600" cy="120" r="180" fill="#0284c7" opacity="0.12" filter="blur(40px)"/>
+  <circle cx="600" cy="90" r="140" fill="#0284c7" opacity="0.12" filter="blur(40px)"/>
 
   <!-- Title Pill -->
-  <rect x="475" y="55" width="250" height="34" rx="17" fill="#0369a1" fill-opacity="0.3" stroke="#38bdf8" stroke-width="1.5"/>
-  <text x="600" y="77" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="14" font-weight="600" text-anchor="middle" letter-spacing="1">AUTONOMOUS MULTI-AGENT</text>
+  <rect x="475" y="35" width="250" height="32" rx="16" fill="#0369a1" fill-opacity="0.3" stroke="#38bdf8" stroke-width="1.5"/>
+  <text x="600" y="56" fill="#38bdf8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" font-weight="600" text-anchor="middle" letter-spacing="1">AUTONOMOUS MULTI-AGENT</text>
 
   <!-- Main Headline -->
-  <text x="600" y="140" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="44" font-weight="800" text-anchor="middle" letter-spacing="-0.5">MediCare Intelligence Platform</text>
-  <text x="600" y="175" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="18" font-weight="400" text-anchor="middle">Clinical Safety Guardrails • Self-Correcting SQL • Hybrid RAG (Chroma + BM25) • Zero Hallucination Verifier</text>
+  <text x="600" y="112" fill="#ffffff" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="38" font-weight="800" text-anchor="middle" letter-spacing="-0.5">MediCare Intelligence Platform</text>
+  <text x="600" y="142" fill="#94a3b8" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="16" font-weight="400" text-anchor="middle">Clinical Safety Guardrails • Self-Correcting SQL • Hybrid RAG (Chroma + BM25) • Grounding Verifier</text>
 
   <!-- Central Multi-Agent Flow Box (Mockup Interface) -->
-  <rect x="120" y="220" width="960" height="340" rx="16" fill="url(#card-bg)" stroke="#334155" stroke-width="1.5"/>
+  <rect x="120" y="180" width="960" height="255" rx="16" fill="url(#card-bg)" stroke="#334155" stroke-width="1.5"/>
   
   <!-- Browser top bar -->
-  <rect x="120" y="220" width="960" height="42" rx="16" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-  <circle cx="150" cy="241" r="6" fill="#ef4444"/>
-  <circle cx="170" cy="241" r="6" fill="#f59e0b"/>
-  <circle cx="190" cy="241" r="6" fill="#10b981"/>
-  <text x="600" y="246" fill="#64748b" font-family="monospace" font-size="13" text-anchor="middle">http://localhost:8501 • Streamlit Multi-Agent Interface</text>
+  <rect x="120" y="180" width="960" height="38" rx="16" fill="#0f172a" stroke="#334155" stroke-width="1"/>
+  <circle cx="150" cy="199" r="5" fill="#ef4444"/>
+  <circle cx="168" cy="199" r="5" fill="#f59e0b"/>
+  <circle cx="186" cy="199" r="5" fill="#10b981"/>
+  <text x="600" y="204" fill="#64748b" font-family="monospace" font-size="12" text-anchor="middle">http://localhost:8501 • Streamlit Multi-Agent Interface</text>
 
   <!-- Agents Flow Columns -->
   <!-- 1. Guardrail -->
-  <g transform="translate(150, 290)">
-    <rect width="180" height="110" rx="10" fill="#1e293b" stroke="#0ea5e9" stroke-width="1.5"/>
-    <text x="90" y="32" fill="#38bdf8" font-family="sans-serif" font-size="20" text-anchor="middle">🛡️</text>
-    <text x="90" y="58" fill="#f8fafc" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle">Safety Guardrail</text>
-    <text x="90" y="80" fill="#94a3b8" font-family="sans-serif" font-size="11" text-anchor="middle">&lt; 0.2ms Emergency &amp; PII</text>
-    <text x="90" y="96" fill="#0284c7" font-family="sans-serif" font-size="10" font-weight="600" text-anchor="middle">112 / 14416 Triage</text>
+  <g transform="translate(150, 240)">
+    <rect width="180" height="155" rx="10" fill="#1e293b" stroke="#0ea5e9" stroke-width="1.5"/>
+    <text x="90" y="42" fill="#38bdf8" font-family="sans-serif" font-size="24" text-anchor="middle">🛡️</text>
+    <text x="90" y="74" fill="#f8fafc" font-family="sans-serif" font-size="15" font-weight="700" text-anchor="middle">Safety Guardrail</text>
+    <text x="90" y="102" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Emergency Triage</text>
+    <text x="90" y="122" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">PII Redaction &amp; Masking</text>
+    <text x="90" y="142" fill="#38bdf8" font-family="sans-serif" font-size="11" font-weight="600" text-anchor="middle">112 / Tele-MANAS</text>
   </g>
 
   <!-- Arrow 1 -->
-  <path d="M 340 345 L 380 345" stroke="#64748b" stroke-width="2" marker-end="url(#arrow)"/>
-  <polygon points="380,345 372,340 372,350" fill="#64748b"/>
+  <path d="M 340 317 L 380 317" stroke="#64748b" stroke-width="2"/>
+  <polygon points="380,317 372,312 372,322" fill="#64748b"/>
 
   <!-- 2. Supervisor -->
-  <g transform="translate(390, 290)">
-    <rect width="180" height="110" rx="10" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
-    <text x="90" y="32" fill="#c084fc" font-family="sans-serif" font-size="20" text-anchor="middle">🧭</text>
-    <text x="90" y="58" fill="#f8fafc" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle">Supervisor Router</text>
-    <text x="90" y="80" fill="#94a3b8" font-family="sans-serif" font-size="11" text-anchor="middle">Intent Classification</text>
-    <text x="90" y="96" fill="#a855f7" font-family="sans-serif" font-size="10" font-weight="600" text-anchor="middle">LangGraph State Machine</text>
+  <g transform="translate(390, 240)">
+    <rect width="180" height="155" rx="10" fill="#1e293b" stroke="#8b5cf6" stroke-width="1.5"/>
+    <text x="90" y="42" fill="#c084fc" font-family="sans-serif" font-size="24" text-anchor="middle">🧭</text>
+    <text x="90" y="74" fill="#f8fafc" font-family="sans-serif" font-size="15" font-weight="700" text-anchor="middle">Supervisor Router</text>
+    <text x="90" y="102" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Intent Classification</text>
+    <text x="90" y="122" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Entity Canonicalization</text>
+    <text x="90" y="142" fill="#c084fc" font-family="sans-serif" font-size="11" font-weight="600" text-anchor="middle">LangGraph State Machine</text>
   </g>
 
   <!-- Fork arrows -->
-  <path d="M 580 345 L 620 345" stroke="#64748b" stroke-width="2"/>
-  <polygon points="620,345 612,340 612,350" fill="#64748b"/>
+  <path d="M 580 317 L 620 317" stroke="#64748b" stroke-width="2"/>
+  <polygon points="620,317 612,312 612,322" fill="#64748b"/>
 
   <!-- 3. Subgraphs Stack -->
-  <g transform="translate(630, 275)">
+  <g transform="translate(630, 240)">
     <!-- SQL Subgraph -->
-    <rect width="180" height="65" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.2"/>
-    <text x="20" y="28" fill="#34d399" font-family="sans-serif" font-size="15">📊</text>
-    <text x="45" y="28" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="700">Hospital SQL Agent</text>
-    <text x="45" y="48" fill="#94a3b8" font-family="sans-serif" font-size="10">AST-Validated Self-Healing</text>
+    <rect width="180" height="72" rx="8" fill="#1e293b" stroke="#10b981" stroke-width="1.2"/>
+    <text x="20" y="32" fill="#34d399" font-family="sans-serif" font-size="16">📊</text>
+    <text x="45" y="32" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="700">Hospital SQL Agent</text>
+    <text x="45" y="54" fill="#94a3b8" font-family="sans-serif" font-size="11">AST-Validated Self-Healing</text>
 
     <!-- RAG Subgraph -->
-    <rect y="75" width="180" height="65" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2"/>
-    <text x="20" y="103" fill="#fbbf24" font-family="sans-serif" font-size="15">📋</text>
-    <text x="45" y="103" fill="#f8fafc" font-family="sans-serif" font-size="12" font-weight="700">Policy RAG Agent</text>
-    <text x="45" y="123" fill="#94a3b8" font-family="sans-serif" font-size="10">Chroma + BM25 RRF</text>
+    <rect y="83" width="180" height="72" rx="8" fill="#1e293b" stroke="#f59e0b" stroke-width="1.2"/>
+    <text x="20" y="115" fill="#fbbf24" font-family="sans-serif" font-size="16">📋</text>
+    <text x="45" y="115" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="700">Policy RAG Agent</text>
+    <text x="45" y="137" fill="#94a3b8" font-family="sans-serif" font-size="11">Chroma + BM25 RRF</text>
   </g>
 
   <!-- Join arrow -->
-  <path d="M 820 345 L 860 345" stroke="#64748b" stroke-width="2"/>
-  <polygon points="860,345 852,340 852,350" fill="#64748b"/>
+  <path d="M 820 317 L 860 317" stroke="#64748b" stroke-width="2"/>
+  <polygon points="860,317 852,312 852,322" fill="#64748b"/>
 
   <!-- 4. Verifier & Synthesizer -->
-  <g transform="translate(870, 290)">
-    <rect width="170" height="110" rx="10" fill="#1e293b" stroke="#ec4899" stroke-width="1.5"/>
-    <text x="85" y="32" fill="#f472b6" font-family="sans-serif" font-size="20" text-anchor="middle">🔒</text>
-    <text x="85" y="58" fill="#f8fafc" font-family="sans-serif" font-size="13" font-weight="700" text-anchor="middle">Grounding Verifier</text>
-    <text x="85" y="80" fill="#94a3b8" font-family="sans-serif" font-size="11" text-anchor="middle">Deterministic Check</text>
-    <text x="85" y="96" fill="#f43f5e" font-family="sans-serif" font-size="10" font-weight="600" text-anchor="middle">100% Citations Verified</text>
+  <g transform="translate(870, 240)">
+    <rect width="170" height="155" rx="10" fill="#1e293b" stroke="#ec4899" stroke-width="1.5"/>
+    <text x="85" y="42" fill="#f472b6" font-family="sans-serif" font-size="24" text-anchor="middle">🔒</text>
+    <text x="85" y="74" fill="#f8fafc" font-family="sans-serif" font-size="14" font-weight="700" text-anchor="middle">Grounding Verifier</text>
+    <text x="85" y="102" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Citation Matching</text>
+    <text x="85" y="122" fill="#94a3b8" font-family="sans-serif" font-size="12" text-anchor="middle">Fact Consistency Check</text>
+    <text x="85" y="142" fill="#f472b6" font-family="sans-serif" font-size="11" font-weight="600" text-anchor="middle">Zero Hallucinations</text>
   </g>
-
-  <!-- Bottom Metric Badges -->
-  <g transform="translate(180, 460)">
-    <!-- Badge 1 -->
-    <rect width="180" height="60" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-    <text x="90" y="27" fill="#38bdf8" font-family="sans-serif" font-size="18" font-weight="800" text-anchor="middle">153 / 153</text>
-    <text x="90" y="47" fill="#64748b" font-family="sans-serif" font-size="11" text-anchor="middle">Test Suite Passing</text>
-
-    <!-- Badge 2 -->
-    <rect x="220" width="180" height="60" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-    <text x="310" y="27" fill="#10b981" font-family="sans-serif" font-size="18" font-weight="800" text-anchor="middle">100.0%</text>
-    <text x="310" y="47" fill="#64748b" font-family="sans-serif" font-size="11" text-anchor="middle">Benchmark Compliance</text>
-
-    <!-- Badge 3 -->
-    <rect x="440" width="180" height="60" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-    <text x="530" y="27" fill="#a855f7" font-family="sans-serif" font-size="18" font-weight="800" text-anchor="middle">0 Hardcoding</text>
-    <text x="530" y="47" fill="#64748b" font-family="sans-serif" font-size="11" text-anchor="middle">Config &amp; Prompt Isolated</text>
-
-    <!-- Badge 4 -->
-    <rect x="660" width="180" height="60" rx="8" fill="#0f172a" stroke="#334155" stroke-width="1"/>
-    <text x="750" y="27" fill="#f59e0b" font-family="sans-serif" font-size="18" font-weight="800" text-anchor="middle">&lt; 0.2ms</text>
-    <text x="750" y="47" fill="#64748b" font-family="sans-serif" font-size="11" text-anchor="middle">Safety Guardrail Latency</text>
-  </g>
-
-  <!-- Author Tag in footer -->
-  <text x="600" y="605" fill="#64748b" font-family="-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" font-size="13" text-anchor="middle">Architected &amp; Engineered by <tspan fill="#38bdf8" font-weight="600">Palash Rajpara</tspan> • Production-Grade AI Engineering</text>
 </svg>

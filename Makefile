@@ -1,4 +1,4 @@
-.PHONY: help setup api ui test lint fmt check evals docker-up docker-down clean clean-force audit
+.PHONY: help setup api ui test lint fmt check evals docker-up docker-down clean clean-force validate
 
 help: ## Show this help message
 	@echo "\033[1;34m==================================================\033[0m"
@@ -24,7 +24,7 @@ lint: ## Run code linter with ruff
 fmt: ## Format code with ruff
 	uv run ruff format .
 
-check: lint test audit ## Run linter, test suite, and hardcoding audit in sequence
+check: lint test validate ## Run linter, test suite, and configuration validation in sequence
 
 evals: ## Run golden question benchmark evaluation
 	uv run medicare-evals --out evals/report.md
@@ -35,8 +35,8 @@ docker-up: ## Start all services using Docker Compose
 docker-down: ## Stop Docker Compose services
 	docker compose down
 
-audit: ## Run hardcoded data and schema scanner
-	uv run python scripts/audit_hardcoding.py
+validate: ## Run configuration and static data integrity scanner
+	uv run python scripts/validate_config.py
 
 clean: ## Interactive cleanup of runtime databases, vector stores, and caches
 	@read -p "Are you sure you want to delete caches and runtime state in var/? [y/N] " ans && if [ "$$ans" = "y" ] || [ "$$ans" = "Y" ]; then \

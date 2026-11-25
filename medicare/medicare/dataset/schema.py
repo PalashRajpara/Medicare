@@ -123,7 +123,10 @@ Table 3: insurer_acceptance
 - avg_claim_settlement_days (INTEGER): Average days to settle claims with this insurer.
 
 SQL Construction Rules:
-- Always JOIN hospital_procedures and insurer_acceptance to hospitals on hospital_id.
+- Only JOIN tables that are relevant to the inquiry:
+  * For procedure, cost, and wait time inquiries: JOIN `hospitals` and `hospital_procedures` on `hospital_id`.
+  * Do NOT join `insurer_acceptance` unless the user explicitly asks about insurance policies, insurers, or cashless status. Joining `insurer_acceptance` without filtering an insurer duplicates hospital rows because each hospital has multiple empaneled insurers.
+  * If joining tables could produce multiple rows with identical metrics, use SELECT DISTINCT or GROUP BY to prevent duplicate hospital records.
 - For city, procedure, or insurer matching, use case-insensitive LIKE: lower(h.city) LIKE lower('%<city>%').
 - Select meaningful column aliases: h.name AS hospital_name, hp.avg_cost_inr, hp.min_cost_inr, hp.max_cost_inr, hp.avg_wait_days, ia.cashless_accepted.
 - Always include an ORDER BY (e.g., avg_cost_inr ASC or avg_wait_days ASC) and a sensible LIMIT (e.g. LIMIT 15).

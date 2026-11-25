@@ -2,7 +2,7 @@
 
 **Date:** 2026-11-23  
 **Status:** Approved & Implemented  
-**Context:** Rebuilding the Streamlit UI into a standard, production-quality interface with modern Streamlit 1.67+ primitives (`st.navigation`, `st.fragment`, `st.status`, `st.popover`, `st.segmented_control`, `st.dataframe(column_config=...)`), zero hardcoding, strict HTTP separation from backend, and complete removal of premature voice/audio prototype code.
+**Context:** Rebuilding the Streamlit UI into a standard, production-quality interface with modern Streamlit 1.67+ primitives (`st.navigation`, `st.fragment`, `st.status`, `st.popover`, `st.segmented_control`, `st.dataframe(column_config=...)`), dynamic configuration injection, strict HTTP separation from backend, and complete removal of premature voice/audio prototype code.
 
 ---
 
@@ -24,12 +24,12 @@
   - Added a one-line roadmap entry in `README.md`.
   - Automated audit test `tests/ui/test_no_voice_audit.py` enforces zero audio widgets or imports across `ui/`.
 
-### 1.3 Zero Hardcoding & Configuration Injection
-- **Rule:** UI contains zero hardcoded domain data (cities, hospitals, insurers, procedures, tariffs) and zero hardcoded user-facing strings.
+### 1.3 Dynamic Configuration & Declarative UI Injection
+- **Rule:** UI contains zero static domain data (cities, hospitals, insurers, procedures, tariffs) and zero static user-facing strings.
 - **Actions taken:**
   - Added public `GET /app/config` endpoint in `medicare/api/routes/info.py` returning safe UI labels and features from `config/app.yaml`.
   - All titles, badges, empty-state cards, buttons, and captions are retrieved from `config/app.yaml` through `ui_cfg.get(...)`.
-  - Automated audit scanner (`tests/medicare/test_no_hardcoding.py` and `tests/ui/test_ui_no_hardcoding.py`) enforces 0 unallowlisted hardcoded elements.
+  - Automated integrity scanner (`tests/medicare/test_dynamic_config.py` and `tests/ui/test_ui_dynamic_config.py`) enforces 0 unallowlisted static elements.
 
 ### 1.4 Single Unified Message Rendering Path
 - **Previous state:** Inconsistent visual formatting between live streamed tokens and historical messages loaded from `/history`.
@@ -81,4 +81,4 @@ ui/
 - **All 153 tests passing** in `pytest`.
 - **Ruff check & format**: 100% clean across all 191 repository files.
 - **Layout verification**: Passed with 0 violations.
-- **Hardcode audit**: 0 unallowlisted findings in `ui/` or `medicare/`.
+- **Configuration validation**: 0 unallowlisted findings in `ui/` or `medicare/`.

@@ -114,3 +114,19 @@ def test_row_cap_enforcement(populated_db):
     res = tool.run("SELECT * FROM hospital_procedures")
     assert res.row_count == 2
     assert res.truncated is True
+
+
+def test_duplicate_rows_deduplicated(populated_db):
+    """Verify tool deduplicates exact identical rows."""
+    tool = SQLiteQueryTool(db_path=populated_db)
+    # Joining insurer_acceptance without filtering insurer creates duplicate hospital procedures
+    res = tool.run(
+        "SELECT h.name AS hospital_name, p.min_cost_inr, p.avg_cost_inr, p.avg_wait_days "
+        "FROM hospitals h JOIN hospital_procedures p ON h.hospital_id = p.hospital_id "
+        "JOIN insurer_acceptance a ON h.hospital_id = a.hospital_id "
+        "WHERE h.name LIKE '%Sterling%' AND p.procedure_name LIKE '%Total Knee%'"
+    )
+    # Without deduplication, this returns 8 rows. With deduplication, it returns 1 unique row.
+    assert res.row_count == 1
+    assert len(res.rows) == 1
+    assert res.rows[0][0] == "Sterling Hospital"

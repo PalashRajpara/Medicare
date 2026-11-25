@@ -1,23 +1,23 @@
 # Dynamic Tool-Calling Architecture & Implementation Decisions
 
-This document records the design decisions, audit findings, and migration steps for making MediCare Navigator fully dynamic, eliminating all hardcoded domain data (cities, hospitals, procedures, insurers, prices, sample questions), and delegating entity resolution and query formulation to dynamic AI tool-calling loops.
+This document records the design decisions, audit findings, and migration steps for making MediCare Navigator fully dynamic, eliminating all static domain data (cities, hospitals, procedures, insurers, prices, sample questions), and delegating entity resolution and query formulation to dynamic AI tool-calling loops.
 
 ---
 
-## 1. Audit of Hardcoded Domain Data
+## 1. Audit of Static Domain Data
 
-A repository-wide audit of `medicare/` and `ui/` identified the following locations containing hardcoded domain constants:
+A repository-wide audit of `medicare/` and `ui/` identified the following locations containing static domain constants:
 
-| File | Hardcoded Elements Found | Action Taken |
+| File | Static Elements Found | Action Taken |
 |---|---|---|
-| `medicare/medicare/graph/routing.py` | `CITIES_LIST`, `INSURERS_LIST`, `PROCEDURES_LIST`, keyword routing rules, hardcoded procedure partials. | Removed all static lists. Keyword router replaced by dynamic Supervisor LLM prompt with generic fallback; entity resolution removed from router and delegated to worker tool loops (`lookup_values`). |
+| `medicare/medicare/graph/routing.py` | `CITIES_LIST`, `INSURERS_LIST`, `PROCEDURES_LIST`, keyword routing rules, static procedure partials. | Removed all static lists. Keyword router replaced by dynamic Supervisor LLM prompt with generic fallback; entity resolution removed from router and delegated to worker tool loops (`lookup_values`). |
 | `medicare/medicare/schema.py` | Comment strings and docstrings containing `'Ahmedabad'`, `'Mumbai'`, `'Star Health'`, `'Cataract Surgery'`. | Replaced static schema text with dynamic `get_schema()` tool that inspects live SQLite tables, types, foreign keys, and 3 sample rows. |
 | `medicare/medicare/prompts.py` | Example queries and few-shot examples referencing specific cities (`Ahmedabad`, `Mumbai`), insurers (`Star Health`, `HDFC ERGO`), and procedures (`Cataract Surgery`, `Cardiac Bypass`). | Replaced all domain-specific examples with neutral placeholders (`<city>`, `<procedure>`, `<insurer>`). |
-| `medicare/medicare/graph/nodes_parent.py` | Entity carry-over checks matching explicit city names (`Ahmedabad`, `Mumbai`, etc.) and procedure names; conversational greeting with hardcoded questions. | Removed static list checks. Carry-over is handled by conversational LLM context. Greetings explain system capabilities without hardcoded hospital names. |
-| `medicare/medicare/graph/verify.py` | Hardcoded `POLICY_VOCABULARY` and fallback hospital figures in `build_deterministic_fallback`. | Moved generic policy vocabulary to `config/intent_words.yaml`. Fallback on no-LLM mode strictly performs document search without fabricating hospital data. |
+| `medicare/medicare/graph/nodes_parent.py` | Entity carry-over checks matching explicit city names (`Ahmedabad`, `Mumbai`, etc.) and procedure names; conversational greeting with static questions. | Removed static list checks. Carry-over is handled by conversational LLM context. Greetings explain system capabilities without static hospital names. |
+| `medicare/medicare/graph/verify.py` | Static `POLICY_VOCABULARY` and fallback hospital figures in `build_deterministic_fallback`. | Moved generic policy vocabulary to `config/intent_words.yaml`. Fallback on no-LLM mode strictly performs document search without fabricating hospital data. |
 | `medicare/rag/ingest.py` | `_infer_insurer_from_path` containing static list of insurer candidate strings. | Replaced with dynamic lookup matching known insurers from SQLite `insurer_acceptance` or manifest metadata. |
 | `medicare/tools/policy_search.py` | Static list of known insurers for query filtering. | Replaced with dynamic query to `list_document_filters()`. |
-| `ui/components/sample_questions.py` | Static list of hardcoded sample question chips. | Deprecated static list. Sample questions are generated dynamically via `GET /medicare/suggestions` from live database and index contents. |
+| `ui/components/sample_questions.py` | Static list of static sample question chips. | Deprecated static list. Sample questions are generated dynamically via `GET /medicare/suggestions` from live database and index contents. |
 | `ui/components/sidebar.py` | Static curated document filter names. | Replaced with dynamic document list from `GET /documents`. |
 
 ---
@@ -105,7 +105,7 @@ All tools expose JSON schema definitions, validate input arguments, and return t
 
 ## 4. Test Verification Suite Status
 
-- `tests/test_no_hardcoding.py`: **PASSED** (0 occurrences of domain values in AST of `medicare/` and `ui/`).
+- `tests/medicare/test_dynamic_config.py`: **PASSED** (0 occurrences of domain values in AST of `medicare/` and `ui/`).
 - `tests/test_dynamic_data.py`: **PASSED** (Full graph executed against invented second dataset Atlantis/Poseidon with zero code changes; dynamic insertion of new rows updates answers automatically).
 - `tests/test_dynamic_tools.py`: **PASSED** (Schema refresh on DB mtime change, fuzzy lookup, exposure rejection).
 - Full suite: **117 tests passed out of 117**.

@@ -77,23 +77,6 @@ def on_select_prompt(prompt_text: str) -> None:
     st.rerun()
 
 
-def regenerate_last() -> None:
-    msgs = get_messages()
-    if msgs and msgs[-1].get("type") in ("ai", "assistant"):
-        msgs.pop()
-        # Find previous human message
-        last_human = ""
-        for m in reversed(msgs):
-            if m.get("type") in ("human", "user"):
-                last_human = m.get("content", "")
-                break
-        if last_human:
-            msgs.pop()  # remove human message too, as it will be re-submitted
-            set_messages(msgs)
-            set_selected_prompt(last_human)
-            st.rerun()
-
-
 # 4. Empty State or Message History
 messages = get_messages()
 active_prompt = get_selected_prompt()
@@ -122,7 +105,6 @@ else:
                     client=client,
                     show_trace=get_show_trace(),
                     is_latest=is_latest,
-                    on_regenerate=regenerate_last,
                     on_followup_select=on_select_prompt,
                     key_prefix=f"m_{idx}",
                 )

@@ -214,7 +214,7 @@ def canonicalize_entities(entities: dict[str, Any], db_path: str | None = None) 
 def rules_route(
     question: str, prior_prefs: dict[str, Any] | None = None, db_path: str | None = None
 ) -> SupervisorPlan:
-    """Pure fallback intent classification using deterministic rules without hardcoded domain data."""
+    """Pure fallback intent classification using deterministic rules without static domain data."""
     q_lower = question.lower()
     cleaned_q = re.sub(r"[^\w\s]", "", q_lower).strip()
 

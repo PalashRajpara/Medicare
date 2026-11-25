@@ -337,9 +337,9 @@ class Settings(BaseSettings):
     TTS_PROVIDER: str = "mock"
 ```
 
-### 3.3 Zero-Hardcoding Subsystem & YAML Configuration Architecture
+### 3.3 Dynamic Configuration & Architecture Registry
 
-To guarantee pure schema agnosticism, domain decoupling, and test reproducibility, the platform eliminates all hardcoded values from `medicare/` and `ui/`:
+To guarantee pure schema agnosticism, domain decoupling, and test reproducibility, the platform externalizes configuration parameters, technical constants, and domain data from `medicare/` and `ui/`:
 
 1. **Category A (Data Values):** Cities, hospitals, insurers, and procedures are NEVER stored in code; all are dynamically read via tools from the database or vector index.
 2. **Category B (Schema Agnosticism):** Chart specifications, column classifications, and table formatters dynamically inspect column types without referencing specific column names (`avg_cost_inr`, etc.).
@@ -358,14 +358,14 @@ To guarantee pure schema agnosticism, domain decoupling, and test reproducibilit
 | `config/verifier_terms.yaml` | Domain policy vocabulary, disclaimer words, exempt numbers for grounding verification. |
 | `config/intent_words.yaml` | Conversational greetings, conversational patterns, policy indicators, data indicators, query expansion synonyms. |
 | `config/prompts/*.md` | Prompt templates with dynamic `{placeholder}` interpolation and startup validation. |
-| `config/hardcode_allowlist.yaml` | Allowlist of technical framework constants (HTTP codes, SSE event types, tool docstrings) with mandatory reasons. |
+| `config/config_allowlist.yaml` | Allowlist of technical framework constants (HTTP codes, SSE event types, tool docstrings) with mandatory reasons. |
 
-#### Permanent Audit Verification
+#### Continuous Integrity Verification
 
-Run the automated hardcode audit scanner at any time:
+Run the automated configuration and static data validator at any time:
 
 ```bash
-uv run python -m scripts.audit_hardcoding
+uv run python scripts/validate_config.py
 ```
 
 ---

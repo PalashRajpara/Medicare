@@ -212,12 +212,14 @@ class MockModelEngine(ModelProviderProtocol):
                     where_clauses.append(w_proc.format(val=p_val))
                 break
 
+        has_insurer = False
         for ins_val in sorted(ins_vals, key=len, reverse=True):
             if ins_val and re.search(r"\b" + re.escape(ins_val.lower()) + r"\b", text_lower):
                 if w_ins:
                     where_clauses.append(w_ins.format(val=ins_val))
                 if w_cash:
                     where_clauses.append(w_cash)
+                has_insurer = True
                 break
 
         is_count = any(
@@ -231,7 +233,10 @@ class MockModelEngine(ModelProviderProtocol):
                 "SELECT count(*) AS hospital_count FROM hospitals h WHERE {where_sql}",
             )
             return count_template.format(where_sql=where_sql)
-        template = mq.get("hospitals_sql", "")
+        if has_insurer:
+            template = mq.get("hospitals_insurer_sql") or mq.get("hospitals_sql", "")
+        else:
+            template = mq.get("hospitals_sql", "")
         return template.format(where_sql=where_sql)
 
     def _handle_medicare_sql_fixer(self, text: str) -> str:

@@ -243,7 +243,7 @@ flowchart TD
 
 ### UI Architectural Invariants:
 1. **HTTP Only**: The UI has zero imports from the backend `medicare` package.
-2. **Zero Hardcoded Data**: All domain entities, labels, titles, and capability cards are injected via `GET /app/config` and `config/app.yaml`.
+2. **Dynamic Configuration**: All domain entities, labels, titles, and capability cards are injected via `GET /app/config` and `config/app.yaml`.
 3. **Identical Message Rendering**: Both live streams and historical conversation thread messages render through the exact same function (`render_assistant_answer`).
 4. **Isolated Fragment Polling**: `@st.fragment` manages live status polling for background document indexing and sidebar status without triggering full page reruns.
 5. **No Voice Prototype Code**: Voice audio features are explicitly excluded (`features.voice = false`), ensuring clean production focus on tabular, procedural, and policy intelligence.

@@ -50,26 +50,11 @@ def render_assistant_answer(
     # 2. Markdown Answer Body
     st.markdown(content)
 
-    # 3. Table and Chart Tabs
-    table_data = medicare_meta.get("table")
+    # 3. Chart Visualizer (Table is already rendered in the markdown answer body)
     chart_data = medicare_meta.get("chart")
-    has_table = bool(table_data and table_data.get("columns") and table_data.get("rows"))
     has_chart = bool(chart_data and len(chart_data.get("data", [])) >= 2)
 
-    cfg = get_app_config()
-    ui_cfg = cfg.get("ui", {})
-    tab_table_label = ui_cfg.get("tab_table_label", "Table")
-    tab_chart_label = ui_cfg.get("tab_chart_label", "Chart")
-
-    if has_table and has_chart:
-        tab_t, tab_c = st.tabs([f"📊 {tab_table_label}", f"📈 {tab_chart_label}"])
-        with tab_t:
-            render_results_table(table_data, key_prefix=f"{key_prefix}_tab")
-        with tab_c:
-            render_results_chart(chart_data, key_prefix=f"{key_prefix}_tab")
-    elif has_table:
-        render_results_table(table_data, key_prefix=f"{key_prefix}_table")
-    elif has_chart:
+    if has_chart:
         render_results_chart(chart_data, key_prefix=f"{key_prefix}_chart")
 
     # 4. Sources Row (Citations Popover Chips)
@@ -90,11 +75,11 @@ def render_assistant_answer(
             key_prefix=f"{key_prefix}_followups",
         )
 
-    # 7. Action Buttons (Thumbs up/down, Copy, Regenerate)
+    # 7. Action Buttons (Thumbs up/down, Copy)
     render_message_actions(
         client=client,
         run_id=run_id,
         answer_text=content,
-        on_regenerate=on_regenerate if is_latest else None,
+        on_regenerate=None,
         key_prefix=f"{key_prefix}_act",
     )

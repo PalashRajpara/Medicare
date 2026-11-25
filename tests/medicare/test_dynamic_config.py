@@ -1,4 +1,4 @@
-"""Test verifying zero hardcoded domain data in medicare/ and ui/ source trees."""
+"""Test verifying dynamic configuration and absence of raw domain data in source trees."""
 
 import csv
 import re
@@ -7,7 +7,7 @@ from pathlib import Path
 REPO_ROOT = Path(__file__).resolve().parent.parent.parent
 
 
-def test_no_hardcoded_domain_data_in_source():
+def test_no_raw_domain_data_in_source():
     """Fail if any city, hospital, procedure, or insurer name appears in medicare/ or ui/."""
     domain_values: set[str] = set()
 
@@ -50,20 +50,20 @@ def test_no_hardcoded_domain_data_in_source():
                             )
 
     assert not violations, (
-        f"Found {len(violations)} hardcoded domain values in production source code:\n"
+        f"Found {len(violations)} raw domain values in production source code:\n"
         + "\n".join(violations[:20])
     )
 
 
-def test_hardcode_audit_zero_unallowlisted():
-    """Run full hardcode audit scanner in-process and assert 0 unallowlisted findings."""
-    from scripts.audit_hardcoding import run_audit
+def test_config_validation_zero_unallowlisted():
+    """Run full configuration validation scanner in-process and assert 0 unallowlisted findings."""
+    from scripts.validate_config import run_audit
 
     findings, unallowed = run_audit(REPO_ROOT)
     unallowed_items = [
         f"{f.file}:{f.line} [{f.category}] {f.text}" for f in findings if not f.allowlisted
     ]
     assert unallowed == 0, (
-        f"Detected {unallowed} unallowlisted hardcoded elements in codebase:\n"
+        f"Detected {unallowed} unallowlisted static elements in codebase:\n"
         + "\n".join(unallowed_items[:20])
     )

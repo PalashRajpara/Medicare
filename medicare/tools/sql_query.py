@@ -202,8 +202,17 @@ class SQLiteQueryTool(BaseTool):
             fetched = cursor.fetchmany(self.max_rows + 1)
             conn.close()
 
-            truncated = len(fetched) > self.max_rows
-            rows = fetched[: self.max_rows]
+            # Deduplicate exact duplicate rows while preserving order
+            seen_rows: set[tuple[Any, ...]] = set()
+            unique_fetched: list[list[Any]] = []
+            for r in fetched:
+                r_tuple = tuple(r)
+                if r_tuple not in seen_rows:
+                    seen_rows.add(r_tuple)
+                    unique_fetched.append(list(r))
+
+            truncated = len(unique_fetched) > self.max_rows
+            rows = unique_fetched[: self.max_rows]
 
             return TableResult(
                 columns=columns,

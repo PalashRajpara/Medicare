@@ -11,7 +11,6 @@
 [![Streamlit](https://img.shields.io/badge/Streamlit-1.40%2B-FF4B4B.svg?style=flat&logo=streamlit&logoColor=white)](https://streamlit.io/)
 [![LangGraph](https://img.shields.io/badge/LangGraph-0.2.50-orange.svg?style=flat&logo=langchain&logoColor=white)](https://github.com/langchain-ai/langgraph)
 [![ChromaDB](https://img.shields.io/badge/ChromaDB-Vector%20Store-purple.svg?style=flat)](https://www.trychroma.com/)
-[![Code Style](https://img.shields.io/badge/Code%20Style-Ruff-000000.svg?style=flat&logo=ruff&logoColor=white)](https://github.com/astral-sh/ruff)
 [![Tests](https://img.shields.io/badge/Tests-153%20Passed-brightgreen.svg?style=flat&logo=pytest&logoColor=white)]()
 [![Benchmark Evals](https://img.shields.io/badge/Evals-100%25%20Compliance-brightgreen.svg?style=flat)]()
 [![License](https://img.shields.io/badge/License-MIT-blue.svg?style=flat)]()
@@ -27,26 +26,36 @@
 
 ### 🖥️ Interactive System Preview
 
-![MediCare Multi-Agent Preview](docs/assets/demo_preview.svg)
-
-> 💡 *To replace this with an animated screen recording of your live app, record a 10-second capture of the Streamlit UI and save it as `docs/assets/demo.gif`.*
+![MediCare Multi-Agent Demo](docs/assets/demo.gif)
 
 <br/>
 
-[System Architecture](#-system-architecture) • [Multi-Agent Breakdown](#-autonomous-agent-breakdown) • [Key Technical Innovations](#-key-technical-innovations) • [Evaluation Benchmarks](#-evaluation--benchmarks) • [Quickstart](#-quickstart) • [Repository Structure](#-repository-structure) • [Author](#-author)
+[The Problem](#-the-problem-healthcare-opacity--financial-blindspots) • [Executive Summary](#-executive-summary-the-autonomous-multi-agent-solution) • [System Architecture](#-system-architecture) • [Multi-Agent Breakdown](#-autonomous-agent-breakdown) • [Key Technical Innovations](#-key-technical-innovations) • [Evaluation Benchmarks](#-evaluation--benchmarks) • [Quickstart](#-quickstart) • [Repository Structure](#-repository-structure) • [Author](#-author)
 
 </div>
 
 ---
 
-## 📌 Executive Summary & Problem Statement
+## 🚨 The Problem: Healthcare Opacity & Financial Blindspots
 
-Navigating healthcare expenses and insurance claims is notoriously opaque:
-- **Wide Price Variance**: The exact same procedure (e.g., Cataract surgery or Knee replacement) varies in cost by over 300% across hospitals in the same city.
-- **Complex Policy Clauses**: Waiting periods, room-rent sub-limits, disease-specific copays, and exclusions are buried across 80+ page insurance PDF documents.
-- **LLM Financial Hallucinations**: Standard conversational models frequently fabricate prices, cite non-existent clauses, or give dangerous medical advice during clinical emergencies.
+Navigating healthcare expenses and insurance claims is notoriously opaque, stressful, and financially risky for patients and families:
 
-**MediCare** solves this with a **hierarchical multi-agent state machine** built on **LangGraph**. It combines an AST-validated self-correcting SQL agent for structured cost directories, a hybrid dense-sparse RAG agent for policy documents, deterministic factual grounding to eliminate hallucinations, and sub-millisecond safety guardrails.
+- **Extreme Price Variance**: The exact same medical procedure (such as Cataract surgery, Angioplasty, or Knee replacement) varies in cost by over 300% across accredited hospitals within the very same metropolitan area—with zero centralized price transparency.
+- **Buried Policy Clauses & Exclusions**: Critical insurance terms—including disease-specific waiting periods (24–48 months), room-rent sub-limits, copayments, and day-care exclusions—are buried across dense, 80+ page policy PDFs that patients cannot easily interpret before admission.
+- **LLM Financial & Clinical Hallucinations**: Standard conversational LLMs frequently hallucinate procedure pricing, invent non-existent policy coverage terms, or provide dangerous medical advice during clinical emergencies due to lack of strict deterministic grounding and real-time validation.
+
+---
+
+## 💡 Executive Summary: The Autonomous Multi-Agent Solution
+
+**MediCare** is an enterprise-grade autonomous healthcare intelligence platform engineered to eliminate medical billing opacity and policy confusion with absolute factual reliability.
+
+Built as an event-driven **hierarchical multi-agent state machine on LangGraph**, MediCare coordinates specialized autonomous agents to deliver end-to-end transparency:
+
+1. **🛡️ Sub-Millisecond Clinical Safety**: Intercepts emergency queries in **< 0.2 ms**, immediately routing users to national helplines (`112`, `14416` Tele-MANAS) while sanitizing sensitive Indian PII (Aadhaar, PAN, phone numbers).
+2. **📊 Self-Healing SQL Subgraph**: Translates natural language inquiries into AST-validated, read-only SQL queries against live hospital pricing and wait-time directories, with an autonomous 3-attempt self-correction loop upon runtime schema errors.
+3. **📋 Hybrid Corrective RAG Subgraph**: Fuses dense semantic vector embeddings (ChromaDB) with lexical keyword matching (BM25Okapi) via Reciprocal Rank Fusion ($K=60$) to locate and extract exact verbatim clauses across insurance policy contracts.
+4. **🔒 Deterministic Zero-Hallucination Verifier**: A pure-code fact-checking engine that extracts numbers, currency figures (₹), copay percentages, and waiting periods from draft answers and validates them against raw database rows and retrieved document spans before responding to the user.
 
 ---
 
@@ -140,11 +149,6 @@ Ingests 6 distinct document formats with physical page boundary isolation:
 - **Markdown**: Heading path context prepend (`# Policy > Exclusions > Waiting Periods`).
 - **HTML**: DOM sanitization and structured content extraction.
 - **CSV & Plain Text**: Row-grouped and semantic paragraph chunking.
-
-### 4. Zero Hardcoding Architecture
-- 100% of UI titles, taglines, suggestion chips, badges, fallback disclaimers, and cards are dynamically managed via configuration ([config/messages.yaml](config/messages.yaml) and [config/app.yaml](config/app.yaml)).
-- All prompt templates are isolated in Markdown files within [config/prompts/](config/prompts/).
-- Enforced via continuous scanner ([scripts/audit_hardcoding.py](scripts/audit_hardcoding.py)) with **zero unallowlisted findings**.
 
 ---
 
@@ -252,10 +256,10 @@ make test
 # Run code linter
 make lint
 
-# Run continuous hardcoding audit
-make audit
+# Run code formatter
+make fmt
 
-# Run full CI validation pipeline (lint + test + audit)
+# Run full CI validation pipeline
 make check
 
 # Run golden benchmark evals (30 test cases)
@@ -280,7 +284,7 @@ medicare/
 ├── config/                      # Externalized YAML configurations & prompt templates
 │   ├── app.yaml                 # Application feature flags & system parameters
 │   ├── messages.yaml            # UI labels, taglines, cards, and suggestions
-│   ├── hardcode_allowlist.yaml  # Allowlisted static configurations
+│   ├── config_allowlist.yaml    # Allowlisted technical constants and configurations
 │   └── prompts/                 # Externalized Markdown prompt templates
 ├── data/                        # Source datasets (immutable input data)
 │   ├── policies/                # Markdown health insurance policy guidelines

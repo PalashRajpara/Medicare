@@ -65,6 +65,21 @@ def test_format_table_dataframe():
     assert df["Cashless Accepted"].tolist() == [True, False]
 
 
+def test_format_table_dataframe_deduplication():
+    """Verify duplicate rows are deduplicated cleanly."""
+    cols = ["hospital_name", "avg_cost_inr", "avg_wait_days"]
+    rows = [
+        ["Sterling Hospital Gurukul", 170000, 5],
+        ["Sterling Hospital Gurukul", 170000, 5],
+        ["Sterling Hospital Gurukul", 170000, 5],
+        ["Epic Hospital Empire City", 174000, 3],
+        ["Epic Hospital Empire City", 174000, 3],
+    ]
+    df = format_table_dataframe(cols, rows, currency_symbol="₹")
+    assert len(df) == 2
+    assert list(df["Hospital Name"]) == ["Sterling Hospital Gurukul", "Epic Hospital Empire City"]
+
+
 def test_build_column_config():
     """Verify Streamlit column config generation."""
     cols = ["hospital_name", "avg_cost_inr", "cashless_accepted"]

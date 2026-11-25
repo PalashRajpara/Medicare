@@ -1,4 +1,4 @@
-"""Message feedback actions (thumbs up/down, copy, regenerate)."""
+"""Message feedback actions (thumbs up/down, copy)."""
 
 from collections.abc import Callable
 
@@ -15,13 +15,12 @@ def render_message_actions(
     on_regenerate: Callable[[], None] | None = None,
     key_prefix: str = "",
 ) -> None:
-    """Render thumbs up/down evaluation buttons, copy answer, and regenerate action."""
+    """Render thumbs up/down evaluation buttons and copy answer action."""
     cfg = get_app_config()
     ui_cfg = cfg.get("ui", {})
     copy_label = ui_cfg.get("copy_button_label", "📋 Copy")
-    regen_label = ui_cfg.get("regenerate_button_label", "🔄 Regenerate")
 
-    cols = st.columns([1, 1, 2, 2, 6])
+    cols = st.columns([1, 1, 2, 8])
 
     with cols[0]:
         if st.button("👍", key=f"{key_prefix}_thumb_up", help="Helpful and grounded"):
@@ -49,9 +48,3 @@ def render_message_actions(
         if st.button(copy_label, key=f"{key_prefix}_copy_btn", help="Copy answer text"):
             # Put text into clipboard or show code modal
             st.toast("Answer ready to copy!", icon="📋")
-
-    with cols[3]:
-        if on_regenerate is not None and st.button(
-            regen_label, key=f"{key_prefix}_regen_btn", help="Regenerate last response"
-        ):
-            on_regenerate()

@@ -25,8 +25,8 @@ Welcome to the MediCare documentation. This directory provides detailed specific
 
 - [decisions/repo-layout.md](decisions/repo-layout.md): Repository restructuring, strict layer decoupling, and runtime state isolation in `var/`.
 - [decisions/langgraph-migration.md](decisions/langgraph-migration.md): Migration from legacy sequential loop to compiled LangGraph multi-agent architecture.
-- [decisions/dynamic-decisions.md](decisions/dynamic-decisions.md): Elimination of hardcoded schemas, dynamic catalog introspection, and generic database tools.
+- [decisions/dynamic-decisions.md](decisions/dynamic-decisions.md): Elimination of static schemas, dynamic catalog introspection, and generic database tools.
 - [decisions/medicare-decisions.md](decisions/medicare-decisions.md): Clinical safety guardrails, claim terminology, and grounding verifier thresholds.
 - [decisions/clean-spec-summary.md](decisions/clean-spec-summary.md): Summary of architectural baseline and refactoring principles.
 - [decisions/implementation-plan-summary.md](decisions/implementation-plan-summary.md): Execution stages and verification checkpoints.
-- [decisions/hardcode-audit.md](decisions/hardcode-audit.md): Automated hardcoding audit findings and allowlist justifications.
+- [decisions/config-audit.md](decisions/config-audit.md): Automated configuration integrity audit findings and allowlist justifications.

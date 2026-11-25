@@ -42,7 +42,8 @@ suggestion_templates:
   - "Waiting periods under {insurer}"
 
 mock_queries:
-  hospitals_sql: "SELECT h.name AS hospital_name, h.city, p.procedure_name, p.min_cost_inr, p.max_cost_inr, p.avg_cost_inr, p.avg_wait_days, a.insurer_name, a.cashless_accepted FROM hospitals h JOIN hospital_procedures p ON h.hospital_id = p.hospital_id LEFT JOIN insurer_acceptance a ON h.hospital_id = a.hospital_id WHERE {where_sql} ORDER BY p.avg_cost_inr ASC LIMIT 50"
+  hospitals_sql: "SELECT DISTINCT h.name AS hospital_name, h.city, p.procedure_name, p.min_cost_inr, p.max_cost_inr, p.avg_cost_inr, p.avg_wait_days FROM hospitals h JOIN hospital_procedures p ON h.hospital_id = p.hospital_id WHERE {where_sql} ORDER BY p.avg_cost_inr ASC LIMIT 50"
+  hospitals_insurer_sql: "SELECT DISTINCT h.name AS hospital_name, h.city, p.procedure_name, p.min_cost_inr, p.max_cost_inr, p.avg_cost_inr, p.avg_wait_days, a.insurer_name, a.cashless_accepted FROM hospitals h JOIN hospital_procedures p ON h.hospital_id = p.hospital_id JOIN insurer_acceptance a ON h.hospital_id = a.hospital_id WHERE {where_sql} ORDER BY p.avg_cost_inr ASC LIMIT 50"
   hospitals_count_sql: "SELECT count(*) AS hospital_count FROM hospitals h WHERE {where_sql}"
   demo_fail_sql: "SELECT h.name AS hospital_name, h.city, p.procedure_name, p.cost_inr FROM hospitals h JOIN hospital_procedures p ON h.hospital_id = p.hospital_id LIMIT 10"
   where_city: "lower(h.city) LIKE lower('%{val}%')"

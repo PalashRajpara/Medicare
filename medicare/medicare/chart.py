@@ -25,13 +25,25 @@ def build_chart_spec(table: TableResult | None) -> ChartSpec | None:
     if not columns:
         return None
 
+    # Deduplicate rows while preserving order to prevent duplicate bars/points
+    seen_row_tuples: set[tuple[Any, ...]] = set()
+    unique_table_rows: list[list[Any]] = []
+    for r in table.rows:
+        r_tup = tuple(r)
+        if r_tup not in seen_row_tuples:
+            seen_row_tuples.add(r_tup)
+            unique_table_rows.append(r)
+
+    if len(unique_table_rows) < 2:
+        return None
+
     # Classify columns by inspecting data rows
     text_cols: list[str] = []
     numeric_cols: list[str] = []
     binary_cols: list[str] = []
 
     for idx, col in enumerate(columns):
-        col_vals = [r[idx] for r in table.rows if len(r) > idx and r[idx] is not None]
+        col_vals = [r[idx] for r in unique_table_rows if len(r) > idx and r[idx] is not None]
         if not col_vals:
             continue
 
@@ -98,7 +110,7 @@ def build_chart_spec(table: TableResult | None) -> ChartSpec | None:
 
     # Build row dictionaries
     data: list[dict[str, Any]] = []
-    for row in table.rows:
+    for row in unique_table_rows:
         row_dict: dict[str, Any] = {}
         for c_idx, c_name in enumerate(columns):
             row_dict[c_name] = row[c_idx] if c_idx < len(row) else None

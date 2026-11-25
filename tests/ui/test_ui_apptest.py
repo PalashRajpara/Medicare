@@ -106,8 +106,9 @@ def test_apptest_chat_page_with_assistant_message_table_citations():
     rendered_text = any("comparative cost breakdown" in str(m.value) for m in at.markdown)
     assert rendered_text, "Assistant response text not rendered"
 
-    # Check that DataFrame is rendered
-    assert len(at.dataframe) >= 1
+    # Check that comparative chart is rendered and redundant table at the end is omitted
+    assert len(at.get("plotly_chart")) >= 1
+    assert len(at.dataframe) == 0
 
 
 def test_apptest_blocked_safety_response():

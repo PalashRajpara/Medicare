@@ -44,6 +44,8 @@ def format_table_dataframe(
         return pd.DataFrame(columns=[humanize_column_name(c) for c in columns])
 
     raw_df = pd.DataFrame(rows, columns=columns)
+    # Deduplicate exact duplicate rows to prevent repetitive display
+    raw_df = raw_df.drop_duplicates()
     cfg = get_app_config()
     cur_hints = cfg.get("currency_column_hints", [])
     bool_hints = cfg.get("boolean_column_hints", [])
@@ -94,35 +96,5 @@ def build_column_config(columns: list[str], currency_symbol: str = "") -> dict[s
 
 
 def render_results_table(table_data: dict[str, Any] | None, key_prefix: str = "") -> None:
-    """Render formatted interactive table and download button."""
-    if not table_data:
-        return
-
-    columns = table_data.get("columns", [])
-    rows = table_data.get("rows", [])
-    if not columns or not rows:
-        return
-
-    cfg = get_app_config()
-    ui_cfg = cfg.get("ui", {})
-    currency_symbol = cfg.get("currency_symbol", "")
-    download_label = ui_cfg.get("download_csv_label", "Download CSV")
-
-    df = format_table_dataframe(columns, rows, currency_symbol=currency_symbol)
-    col_config = build_column_config(columns, currency_symbol=currency_symbol)
-
-    st.dataframe(
-        df,
-        column_config=col_config,
-        hide_index=True,
-        width="stretch",
-    )
-
-    csv_data = df.to_csv(index=False).encode("utf-8")
-    st.download_button(
-        label=download_label,
-        data=csv_data,
-        file_name="medicare_results.csv",
-        mime="text/csv",
-        key=f"{key_prefix}_download_csv",
-    )
+    """Render formatted interactive table and download button (disabled to avoid duplicate end table)."""
+    return

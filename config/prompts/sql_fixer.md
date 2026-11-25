@@ -16,3 +16,4 @@ RULES:
 3. Use ONLY valid tables and columns from the provided schema.
 4. Correct common mistakes: wrong column names, join errors, ambiguous column references.
 5. Must be a single SELECT statement starting with SELECT or WITH.
+6. Ensure no duplicate records are generated. Use SELECT DISTINCT or appropriate joins to avoid duplicate rows.
